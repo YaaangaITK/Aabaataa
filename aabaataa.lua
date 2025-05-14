@@ -1,5 +1,21 @@
 aa_config = SMODS.current_mod.config
 
+if aa_config["Consumable"] == nil then
+    aa_config["Consumable"] = true
+    Cons_list = {}
+end
+
+if not aa_config["Jokers"] then
+    aa_config["Jokers"] = true
+    joker_list = {}
+end
+
+if aa_config["Chalenges"] == nil then
+    aa_config["Chalenges"] = true
+    chal_list = {}
+end
+
+
 --load atlas (texture)
 
 SMODS.Atlas{
@@ -23,20 +39,11 @@ SMODS.Atlas({
         py = 32
     })
 
---integrate the joker to the game
-
-if aa_config["Jokers"] == nil then
-  aa_config["Jokers"] = true
-end
-
 local joker_list = {
     "turnip",
-    "figurine"
+    "figurine",
+    "enchantress"
 }
-
-if not aa_config["Jokers"] then
-  joker_list = {}
-end
 
 for _, v in ipairs(joker_list) do
     print(v)
@@ -52,12 +59,6 @@ for _, v in ipairs(joker_list) do
         end
     end
     ::continue::
-end
-
---integrate the chalenges to the game
-
-if aa_config["Chalenges"] == nil then
-  aa_config["Chalenges"] = true
 end
 
 local chal_list = {
@@ -84,19 +85,14 @@ for _, v in ipairs(chal_list) do
     ::continue::
 end
 
-
-
---define charms
-
-if aa_config["Cons"] == nil then
-  aa_config["Cons"] = true
-end
+-- Charms Card :
+-- Defines Charms Card as a consumable
 
 SMODS.ConsumableType{
     key = 'CharmsConsumableType',
     collection_rows = {4,5},
-    primary_colour = 'G.C.DARK_EDITION',
-    secondary_colour = 'G.C.DARK_EDITION',
+    primary_colour = G.C.PURPLE,
+    secondary_colour = G.C.PURPLE,
     shop_rate = 1,
     loc_txt = {
         collection = 'Charms Cards',
@@ -105,15 +101,13 @@ SMODS.ConsumableType{
     
 }
 
---load consumable
+-- Load all the CHARMS
 
 local Cons_list = {
-    "c_abracadabra"
+    "c_abracadabra",
+    "c_lumos",
+    "c_spectro"
 }
-
-if not aa_config["Cons"] then
-  Cons_list = {}
-end
 
 for _, v in ipairs(Cons_list) do
     print(v)
@@ -130,6 +124,7 @@ for _, v in ipairs(Cons_list) do
     end
     ::continue::
 end
+
 
 
 --There is nothing here ;)

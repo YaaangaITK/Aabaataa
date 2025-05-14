@@ -6,7 +6,8 @@ local cons = {
     loc_txt = {
         name = 'Spectro',
         text = {
-            'Create 2 random {C:spectral,E:1}Spectral Cards{}.'
+            'Create 1 random {C:spectral,E:1}Spectral Cards{}.',
+            "{C:inactive}(Must have room){}"
         }
     },
 
@@ -15,13 +16,11 @@ local cons = {
     end,
 
     use = function(self,card,area,copier)
-        local newcard = create_card('Spectral', G.consumeables)
-        newcard:add_to_deck()
-        G.consumeables:emplace(newcard)
-        local newcard = create_card('Spectral', G.consumeables)
-        newcard:add_to_deck()
-        G.consumeables:emplace(newcard)
-
+        if G.consumeables.config.card_limit > #G.consumeables.cards then
+            local newcard = create_card('Spectral', G.consumeables)
+            newcard:add_to_deck()
+            G.consumeables:emplace(newcard)
+        end
     end,
 }
 

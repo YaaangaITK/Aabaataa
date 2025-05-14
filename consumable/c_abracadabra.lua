@@ -6,7 +6,8 @@ local cons = {
     loc_txt = {
         name = 'Abracadabra',
         text = {
-            'Create 2 random {C:dark_edition}Charms Card{}.'
+            'Create 2 random {C:dark_edition}Charms Card{}.',
+            "{C:inactive}(Must have room){}"
         }
     },
 
@@ -15,12 +16,17 @@ local cons = {
     end,
 
     use = function(self,card,area,copier)
-        local newcard = create_card('CharmsConsumableType', G.consumeables)
-        newcard:add_to_deck()
-        G.consumeables:emplace(newcard)
-        local newcard = create_card('CharmsConsumableType', G.consumeables)
-        newcard:add_to_deck()
-        G.consumeables:emplace(newcard)
+        if G.consumeables.config.card_limit > #G.consumeables.cards then
+            for i = 1, 2 do
+                local newcard = create_card('CharmsConsumableType', G.consumeables, 'c_spectro')
+                newcard:add_to_deck()
+                G.consumeables:emplace(newcard)
+            end
+        elseif G.consumeables.config.card_limit == #G.consumeables.cards + 1 then
+                local newcard = create_card('CharmsConsumableType', G.consumeables, 'c_spectro')
+                newcard:add_to_deck()
+                G.consumeables:emplace(newcard)
+        end
 
     end,
 }
