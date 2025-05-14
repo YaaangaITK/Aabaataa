@@ -1,0 +1,16 @@
+{
+	"id": "Aabaataa",
+	"name": "AABAATAA",
+	"display_name": "AABAATAA",
+	"author": ["YaaangaITK", "0raili1"],
+	"description":"Adds many things that I think are fun.",
+	"prefix": "aab",
+	"main_file": "aabaataa.lua",
+	"priority": 0,
+	"badge_colour": "D31DFF",
+	"badge_text_colour": "FFFFFF",
+	"version": "0.0.1",
+	"dependencies": [
+		"Steamodded"
+	]
+}
